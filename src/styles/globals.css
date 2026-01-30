@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3F51B5;
+  --color-primary-light: #C5CAE9;
+  --color-primary-dark: #303F9F;
+  --color-primary-container: #E8EAF6;
+  --color-on-primary: #ffffff;
+
+  --color-accent: #FFC107;
+  --color-accent-container: #FFF8E1;
+
+  --color-surface: #ffffff;
+  --color-surface-dim: #FAFAFA;
+  --color-surface-container: #F5F5F5;
+  --color-surface-container-high: #EEEEEE;
+  --color-on-surface: #212121;
+  --color-on-surface-variant: #757575;
+  --color-outline: #E0E0E0;
+
+  --color-success: #4CAF50;
+  --color-success-container: #E8F5E9;
+  --color-error: #F44336;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Poppins', system-ui, sans-serif;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    color: var(--color-on-surface);
+    background: var(--color-surface-dim);
+    line-height: 1.6;
+  }
+  ::selection {
+    background: var(--color-primary-light);
+    color: var(--color-primary-dark);
+  }
+}
