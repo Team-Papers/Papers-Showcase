@@ -25,7 +25,7 @@ export default function BookDetailPage() {
     ])
       .then(([bookData, reviewsData]) => {
         setBook(bookData);
-        setReviews(Array.isArray(reviewsData) ? reviewsData : []);
+        setReviews(Array.isArray(reviewsData) ? reviewsData : reviewsData?.reviews || []);
       })
       .catch(() => setError(true))
       .finally(() => setLoading(false));
