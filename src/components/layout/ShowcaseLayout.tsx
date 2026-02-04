@@ -57,7 +57,7 @@ export default function ShowcaseLayout({ author, children }: ShowcaseLayoutProps
 
       {/* Footer */}
       <footer className="border-t border-outline bg-surface py-6 text-center text-sm text-on-surface-variant">
-        Propulse par <span className="font-semibold text-primary">Paper's</span>
+        Propulse par <span className="font-semibold text-primary">Papers</span>
       </footer>
     </div>
   );

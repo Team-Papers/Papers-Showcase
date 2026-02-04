@@ -18,7 +18,7 @@ export default function QRCodeCard({ bookId }: QRCodeCardProps) {
         <QRCodeSVG value={appUrl} size={160} level="M" />
       </div>
       <p className="mt-3 text-xs text-on-surface-variant">
-        Disponible sur Paper's Mobile
+        Disponible sur Papers Mobile
       </p>
     </div>
   );
