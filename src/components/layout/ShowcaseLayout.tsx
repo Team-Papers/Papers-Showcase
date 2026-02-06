@@ -1,5 +1,6 @@
 import { Globe, Twitter } from 'lucide-react';
 import type { AuthorProfile } from '../../types/models';
+import ThemeToggle from '../ui/ThemeToggle';
 
 interface ShowcaseLayoutProps {
   author: AuthorProfile;
@@ -11,19 +12,30 @@ export default function ShowcaseLayout({ author, children }: ShowcaseLayoutProps
   const avatarUrl = author.photoUrl || author.user?.avatarUrl;
 
   return (
-    <div className="min-h-screen bg-surface-dim">
+    <div className="min-h-screen bg-surface-dim transition-colors">
+      {/* Theme Toggle - Fixed position */}
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+
       {/* Header */}
-      <header className="bg-gradient-to-br from-primary-dark via-primary to-primary-dark text-on-primary">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+      <header className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-700 to-primary-800 text-white">
+        {/* Decorative elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2" />
+        </div>
+
+        <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center text-center sm:flex-row sm:text-left sm:gap-6">
             {avatarUrl ? (
               <img
                 src={avatarUrl}
                 alt={displayName}
-                className="h-24 w-24 rounded-full border-4 border-white/20 object-cover shadow-lg"
+                className="h-24 w-24 rounded-full border-4 border-white/20 object-cover shadow-xl ring-4 ring-white/10"
               />
             ) : (
-              <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-white/20 bg-white/10 text-3xl font-bold shadow-lg">
+              <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-white/20 bg-white/10 text-3xl font-bold shadow-xl backdrop-blur-sm">
                 {displayName.charAt(0).toUpperCase()}
               </div>
             )}
@@ -56,7 +68,7 @@ export default function ShowcaseLayout({ author, children }: ShowcaseLayoutProps
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-outline bg-surface py-6 text-center text-sm text-on-surface-variant">
+      <footer className="border-t border-outline bg-surface py-6 text-center text-sm text-on-surface-variant transition-colors">
         Propulse par <span className="font-semibold text-primary">Papers</span>
       </footer>
     </div>
