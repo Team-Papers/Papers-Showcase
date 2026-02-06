@@ -1,3 +1,5 @@
+import { Tag } from 'lucide-react';
+
 interface CategoryFilterProps {
   categories: string[];
   selected: string | null;
@@ -8,30 +10,30 @@ export default function CategoryFilter({ categories, selected, onSelect }: Categ
   if (categories.length === 0) return null;
 
   return (
-    <div className="flex flex-wrap gap-2">
-      <button
-        onClick={() => onSelect(null)}
-        className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
-          selected === null
-            ? 'bg-primary text-on-primary'
-            : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high'
-        }`}
-      >
-        Tous
-      </button>
-      {categories.map((cat) => (
+    <div className="flex items-center gap-3">
+      <div className="flex items-center gap-1.5 text-on-surface-variant">
+        <Tag className="h-4 w-4" />
+        <span className="text-sm font-medium">Filtrer:</span>
+      </div>
+      <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrer par categorie">
         <button
-          key={cat}
-          onClick={() => onSelect(cat)}
-          className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
-            selected === cat
-              ? 'bg-primary text-on-primary'
-              : 'bg-surface-container text-on-surface-variant hover:bg-surface-container-high'
-          }`}
+          onClick={() => onSelect(null)}
+          aria-pressed={selected === null}
+          className={`category-pill focus-ring ${selected === null ? 'active' : ''}`}
         >
-          {cat}
+          Tous
         </button>
-      ))}
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => onSelect(cat)}
+            aria-pressed={selected === cat}
+            className={`category-pill focus-ring ${selected === cat ? 'active' : ''}`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
