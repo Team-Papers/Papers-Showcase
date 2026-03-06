@@ -24,7 +24,7 @@ export default function BookCard({ book, authorId, index = 0 }: BookCardProps) {
     <Link
       to={`/${authorId}/book/${book.id}`}
       className="book-card group grid-item block focus-ring"
-      style={{ animationDelay: `${index * 50}ms` }}
+      style={{ animationDelay: `${index * 60}ms` }}
     >
       {/* Cover Image */}
       <div className="relative aspect-[2/3] overflow-hidden bg-surface-container">
@@ -44,7 +44,7 @@ export default function BookCard({ book, authorId, index = 0 }: BookCardProps) {
         {/* Overlay gradient on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-        {/* Free badge with gradient */}
+        {/* Free badge */}
         {isFree && (
           <span className="badge-free absolute top-3 right-3 animate-scale-in">
             Gratuit
@@ -53,7 +53,7 @@ export default function BookCard({ book, authorId, index = 0 }: BookCardProps) {
 
         {/* View button on hover */}
         <div className="absolute inset-x-0 bottom-0 translate-y-full p-4 transition-transform duration-300 group-hover:translate-y-0">
-          <span className="block w-full rounded-lg bg-white/95 py-2 text-center text-sm font-semibold text-primary-600 shadow-lg backdrop-blur-sm">
+          <span className="block w-full rounded-xl bg-white/95 py-2.5 text-center text-sm font-semibold text-primary-700 shadow-lg backdrop-blur-sm">
             Voir le livre
           </span>
         </div>
@@ -61,19 +61,17 @@ export default function BookCard({ book, authorId, index = 0 }: BookCardProps) {
 
       {/* Content */}
       <div className="p-4">
-        <h3 className="font-display text-base font-semibold text-on-surface line-clamp-2 leading-snug transition-colors group-hover:text-primary-600">
+        <h3 className="font-display text-sm font-semibold text-on-surface line-clamp-2 leading-snug transition-colors group-hover:text-primary">
           {book.title}
         </h3>
 
         <div className="mt-3 flex items-center justify-between">
-          {/* Price */}
-          <p className={`text-lg font-bold ${isFree ? 'text-success' : 'text-primary-600'}`}>
+          <p className={`text-base font-display font-bold ${isFree ? 'text-success' : 'text-primary'}`}>
             {isFree ? 'Gratuit' : formatCurrency(book.price)}
           </p>
 
-          {/* Publication date */}
           {book.publishedAt && (
-            <div className="flex items-center gap-1 text-xs text-on-surface-variant">
+            <div className="flex items-center gap-1 text-xs text-on-surface-muted">
               <Calendar className="h-3 w-3" />
               <span>{formatDate(book.publishedAt)}</span>
             </div>

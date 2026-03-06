@@ -48,18 +48,16 @@ export default function BookDetailPage() {
         <ThemeToggle />
       </div>
 
-      {/* Header with gradient */}
-      <header className="relative overflow-hidden bg-gradient-to-br from-primary-900 via-primary-700 to-primary-800">
-        {/* Decorative elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2" />
-        </div>
+      {/* Header - Dark Hero */}
+      <header className="relative overflow-hidden bg-gradient-hero">
+        <div className="absolute inset-0 pattern-african" />
+        <div className="absolute -top-20 -right-20 w-72 h-72 bg-primary/15 rounded-full blur-[80px]" />
+        <div className="absolute -bottom-16 -left-16 w-48 h-48 bg-accent/15 rounded-full blur-[80px]" />
 
         <div className="relative mx-auto max-w-5xl px-4 py-6 sm:px-6">
           <Link
             to={`/${authorId}`}
-            className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors focus-ring rounded-lg px-2 py-1 -ml-2"
+            className="inline-flex items-center gap-2 text-sm font-medium text-white/70 hover:text-white transition-colors focus-ring rounded-lg px-2 py-1 -ml-2"
           >
             <ArrowLeft size={18} />
             Retour a la vitrine
@@ -71,10 +69,10 @@ export default function BookDetailPage() {
         <div className="grid gap-8 lg:grid-cols-[320px_1fr]">
           {/* Left Column - Cover & QR */}
           <div className="animate-fade-up">
-            {/* Cover with shadow and hover effect */}
+            {/* Cover with glow */}
             <div className="group relative">
-              <div className="absolute -inset-2 rounded-2xl bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative overflow-hidden rounded-2xl bg-surface shadow-xl ring-1 ring-outline/10">
+              <div className="absolute -inset-3 rounded-2xl bg-primary/15 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="relative overflow-hidden rounded-2xl bg-surface shadow-xl border border-outline">
                 {book.coverUrl ? (
                   <img
                     src={book.coverUrl}
@@ -97,14 +95,18 @@ export default function BookDetailPage() {
             {/* Stats */}
             {book._count && (
               <div className="mt-6 grid grid-cols-2 gap-3">
-                <div className="flex flex-col items-center rounded-xl bg-surface border border-outline p-4 transition-all hover:border-primary-200">
-                  <ShoppingBag className="h-5 w-5 text-primary mb-1" />
-                  <span className="text-lg font-bold text-on-surface">{book._count.purchases}</span>
+                <div className="flex flex-col items-center rounded-2xl bg-surface border border-outline p-4 transition-all hover:border-primary-200 hover:shadow-md">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary-container mb-2">
+                    <ShoppingBag className="h-4 w-4 text-primary" />
+                  </div>
+                  <span className="text-lg font-display font-bold text-on-surface">{book._count.purchases}</span>
                   <span className="text-xs text-on-surface-variant">Achats</span>
                 </div>
-                <div className="flex flex-col items-center rounded-xl bg-surface border border-outline p-4 transition-all hover:border-primary-200">
-                  <User className="h-5 w-5 text-accent mb-1" />
-                  <span className="text-lg font-bold text-on-surface">{book._count.reviews}</span>
+                <div className="flex flex-col items-center rounded-2xl bg-surface border border-outline p-4 transition-all hover:border-accent/30 hover:shadow-md">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent-container mb-2">
+                    <User className="h-4 w-4 text-accent" />
+                  </div>
+                  <span className="text-lg font-display font-bold text-on-surface">{book._count.reviews}</span>
                   <span className="text-xs text-on-surface-variant">Avis</span>
                 </div>
               </div>
@@ -138,18 +140,16 @@ export default function BookDetailPage() {
               </div>
             )}
 
-            {/* Price Badge */}
+            {/* Price */}
             <div className="mt-6">
               {isFree ? (
                 <span className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-success to-emerald-600 px-6 py-3 text-lg font-bold text-white shadow-lg">
                   Gratuit
                 </span>
               ) : (
-                <div className="inline-flex items-center gap-2">
-                  <span className="font-display text-4xl font-bold text-primary">
-                    {formatCurrency(book.price)}
-                  </span>
-                </div>
+                <span className="font-display text-4xl font-bold text-primary">
+                  {formatCurrency(book.price)}
+                </span>
               )}
             </div>
 
@@ -201,11 +201,9 @@ export default function BookDetailPage() {
                 <h2 className="font-display text-xl font-semibold text-on-surface mb-4">
                   A propos de ce livre
                 </h2>
-                <div className="prose prose-slate dark:prose-invert max-w-none">
-                  <p className="text-base leading-relaxed text-on-surface-variant whitespace-pre-line">
-                    {book.description}
-                  </p>
-                </div>
+                <p className="text-base leading-relaxed text-on-surface-variant whitespace-pre-line">
+                  {book.description}
+                </p>
               </div>
             )}
 
@@ -216,7 +214,7 @@ export default function BookDetailPage() {
                   <h2 className="font-display text-xl font-semibold text-on-surface">
                     Avis des lecteurs
                   </h2>
-                  <span className="text-sm text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">
+                  <span className="text-xs text-on-surface-variant bg-surface-container px-3 py-1.5 rounded-full font-medium">
                     {reviews.length} avis
                   </span>
                 </div>
@@ -225,11 +223,11 @@ export default function BookDetailPage() {
                     <div
                       key={review.id}
                       className="rounded-2xl border border-outline bg-surface p-5 transition-all hover:shadow-md hover:border-primary-200 animate-fade-up"
-                      style={{ animationDelay: `${(index + 2) * 50}ms` }}
+                      style={{ animationDelay: `${(index + 2) * 60}ms` }}
                     >
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex items-center gap-3">
-                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-container text-primary font-semibold">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-container text-on-primary-container font-display font-semibold">
                             {review.user
                               ? review.user.firstName.charAt(0).toUpperCase()
                               : 'A'}
@@ -240,7 +238,7 @@ export default function BookDetailPage() {
                                 ? `${review.user.firstName} ${review.user.lastName}`
                                 : 'Anonyme'}
                             </span>
-                            <p className="text-xs text-on-surface-variant">
+                            <p className="text-xs text-on-surface-muted">
                               {formatDate(review.createdAt)}
                             </p>
                           </div>
@@ -262,10 +260,13 @@ export default function BookDetailPage() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-12 border-t border-outline bg-surface py-8 text-center transition-colors">
-        <p className="text-sm text-on-surface-variant">
-          Propulse par <span className="font-semibold text-primary">Papers</span>
-        </p>
+      <footer className="relative overflow-hidden bg-gradient-hero text-white mt-12">
+        <div className="absolute inset-0 pattern-african" />
+        <div className="relative py-8 text-center">
+          <p className="text-sm text-white/50">
+            Propulse par <span className="font-display font-semibold text-primary-400">Papers</span>
+          </p>
+        </div>
       </footer>
     </div>
   );

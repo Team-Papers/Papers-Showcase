@@ -25,7 +25,6 @@ export default function ShowcasePage() {
     getAuthorProfile(authorId)
       .then(async (data) => {
         setAuthor(data);
-        // Fetch details for each book to get categories
         const details = await Promise.allSettled(
           data.books.map((b: AuthorBook) => getBookDetail(b.id))
         );
@@ -63,7 +62,6 @@ export default function ShowcasePage() {
 
   const displayName = author.penName || `${author.user?.firstName ?? ''} ${author.user?.lastName ?? ''}`.trim();
 
-  // Featured book is the most recent or first book (when no category filter)
   const featuredBook = !selectedCategory && author.books.length > 0 ? author.books[0] : null;
   const otherBooks = featuredBook
     ? filteredBooks.filter(b => b.id !== featuredBook.id)
@@ -83,15 +81,17 @@ export default function ShowcasePage() {
       )}
 
       {/* Stats bar */}
-      <div className="mb-6 flex items-center justify-between">
-        <div className="flex items-center gap-2 text-on-surface-variant">
-          <Library className="h-5 w-5" />
+      <div className="mb-6 flex items-center justify-between animate-fade-up" style={{ animationDelay: '200ms' }}>
+        <div className="flex items-center gap-2.5 text-on-surface-variant">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-container">
+            <Library className="h-4 w-4 text-primary" />
+          </div>
           <span className="text-sm font-medium">
             {author.books.length} livre{author.books.length !== 1 ? 's' : ''} publie{author.books.length !== 1 ? 's' : ''}
           </span>
         </div>
         {otherBooks.length > 0 && (
-          <div className="flex items-center gap-2 text-on-surface-variant">
+          <div className="flex items-center gap-2 text-on-surface-muted">
             <BookMarked className="h-4 w-4" />
             <span className="text-sm">
               {otherBooks.length} autre{otherBooks.length !== 1 ? 's' : ''}
@@ -102,7 +102,7 @@ export default function ShowcasePage() {
 
       {/* Category filters */}
       {categories.length > 0 && (
-        <div className="mb-8">
+        <div className="mb-8 animate-fade-up" style={{ animationDelay: '250ms' }}>
           <CategoryFilter
             categories={categories}
             selected={selectedCategory}
@@ -111,9 +111,9 @@ export default function ShowcasePage() {
         </div>
       )}
 
-      {/* Section title when showing filtered or other books */}
+      {/* Section title */}
       {(selectedCategory || otherBooks.length > 0) && (
-        <h2 className="mb-6 font-display text-xl font-semibold text-on-surface">
+        <h2 className="mb-6 font-display text-xl font-semibold text-on-surface animate-fade-up" style={{ animationDelay: '300ms' }}>
           {selectedCategory ? `Categorie: ${selectedCategory}` : 'Tous les livres'}
         </h2>
       )}
