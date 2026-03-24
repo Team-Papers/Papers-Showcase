@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 100" fill="none">
+  <rect width="240" height="100" rx="12" fill="#FFCC00"/>
+  <!-- MTN oval -->
+  <ellipse cx="48" cy="45" rx="26" ry="22" fill="#003C71"/>
+  <text x="48" y="52" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" fill="#FFCC00">MTN</text>
+  <!-- MoMo text -->
+  <text x="148" y="42" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="22" font-weight="700" fill="#003C71" letter-spacing="0.5">Mobile</text>
+  <text x="148" y="68" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="700" fill="#003C71" letter-spacing="1">Money</text>
+  <!-- Accent line -->
+  <rect x="90" y="80" width="60" height="3" rx="1.5" fill="#003C71" opacity="0.3"/>
+</svg>

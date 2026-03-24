@@ -153,6 +153,27 @@ export default function BookDetailPage() {
               )}
             </div>
 
+            {/* Payment Methods */}
+            {!isFree && (
+              <div className="mt-4 flex items-center gap-3">
+                <span className="text-xs text-on-surface-variant font-medium">Payer avec</span>
+                <div className="flex items-center gap-2">
+                  <img src="/images/payment/orange-money.svg" alt="Orange Money" className="h-8 rounded" />
+                  <img src="/images/payment/mtn-momo.svg" alt="MTN MoMo" className="h-8 rounded" />
+                  <img src="/images/payment/visa.svg" alt="Visa" className="h-8 rounded" />
+                  <img src="/images/payment/mastercard.svg" alt="Mastercard" className="h-8 rounded" />
+                </div>
+              </div>
+            )}
+
+            {/* CTA Button */}
+            <div className="mt-5">
+              <button className="inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-8 py-3.5 text-base font-bold text-on-primary shadow-lg transition-all hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]">
+                <ShoppingBag size={18} />
+                Obtenir
+              </button>
+            </div>
+
             {/* Meta chips */}
             <div className="mt-8 flex flex-wrap gap-3">
               {book.pageCount && (
