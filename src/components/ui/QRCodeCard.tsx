@@ -6,7 +6,7 @@ interface QRCodeCardProps {
 }
 
 export default function QRCodeCard({ bookId }: QRCodeCardProps) {
-  const appUrl = `https://papers237.com/book/${bookId}`;
+  const appUrl = `https://papers.seed-innov.com/book/${bookId}`;
 
   return (
     <div className="qr-card group">

@@ -7,7 +7,7 @@ echo "=== Creating Nginx config for Papers Showcase ==="
 cat > /etc/nginx/sites-available/papers-showcase <<'EOF'
 server {
     listen 80;
-    server_name showcase.papers237.duckdns.org;
+    server_name showcase-papers.seed-innov.com;
 
     root /home/softengine/papers-showcase/dist;
     index index.html;
@@ -32,7 +32,7 @@ echo "=== Reloading Nginx ==="
 systemctl reload nginx
 
 echo "=== Done! ==="
-echo "Site available at: http://showcase.papers237.duckdns.org"
+echo "Site available at: http://showcase-papers.seed-innov.com"
 echo ""
 echo "To enable HTTPS, run:"
-echo "  sudo certbot --nginx -d showcase.papers237.duckdns.org"
+echo "  sudo certbot --nginx -d showcase-papers.seed-innov.com"
